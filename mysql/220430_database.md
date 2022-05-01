@@ -1,0 +1,572 @@
+### Database
+
+--------
+
+
+
+#### 데이터베이스란?
+
+- 여러 사람이 공유하고 사용할 목적으로 통합 관리되는 정보의 집합
+- 논리적으로 연관된 하나 이상의 자료의 모음으로 그 내용을 고도로 구조화 함으로써 검색과 갱신의 효율화를 꾀한 것이다.
+- 몇 개의 자료 파일을 조직적으로 통합하여 자료 항목의 **중복을 없애고** 자료를 구조화하여 기억시켜 놓은 자료의 집합체
+
+
+
+#### DBMS (Database Management System)
+
+- 데이터 베이스 관리 프로그램
+- 데이터베이스 조작 인터페이스 제공 (CRUD)
+- 데이터베이스 구축 기능 제공
+- 데이터 복구, 사용 권한 부여, 유지 보수 기능 제공
+
+
+
+
+
+-------------
+
+### 관계형 데이터베이스 (Relation DB)
+
+------
+
+
+
+####  관계형 데이터 베이스란?
+
+- 테이블 기반의 Database
+- 데이터를 테이블 단위로 관리한다
+  - 하나의 데이터(record)는 여러 속성을 가진다.
+  - 데이터 중복을 최소화
+  - 테이블 간의 관계를 이용하여 필요한 데이터 검색 가능
+- 테이블(Table)
+  - 실제 데이터가 저장되는 곳
+  - 행과 열의 2차원 구조를 가진 데이터 저장 장소
+
+
+
+
+
+--------------
+
+### SQL(Structed Query Languate)
+
+---------
+
+
+
+####  SQL 이란 ?
+
+- 관계형 데이터 베이스에서 데이터 조작과 데이터 정의를 위해 사용하는 언어
+
+  - 데이터 조회
+
+  - 데이터 삽입, 삭제, 수정
+
+  - DB 사용자 생성 및 삭제 권한 제어
+
+    
+
+- 표준 SQL은 모든 DBMS에서 사용가능
+
+
+
+- SQL의 특징 
+  - 배우고 사용하기 쉽다.
+  - 대소문자를 구별하지 않는다. (데이터의 대소문자는 구별)
+  - 절차적인 언어가 아니라 선언적 언어이다.
+  - DBMS에 종속적이지 않다.
+
+
+
+- **언어의 특징에 다른 구분**
+
+  - **DML** (Data Manipulation Language) : 데이터 조작 언어
+
+    - 데이터베이스에서 데이터를 조작하거나 조회할 때 사용한다.
+
+    - 테이블의 레코드를 CRUD (Create, Read, Update, Delete)
+
+    - **SELECT** : 데이터 베이스에서 데이터를 조회할 때 사용
+
+    - **INSERT** : 테이블에 새 행을 입력할 때 사용
+
+    - **UPDATE** : 기존 행을 변경할 때 사용
+
+    - **DELETE** : 테이블에서 행을 삭제할 때 사용
+
+      
+
+  - **DDL** (Data Definition Language) : 데이터 정의 언어
+
+    - 데이터 베이스 객체 ( table, view, user, index 등 )의 구조를 정의
+
+    - **CREATE** : 테이블 등 데이터 객체를 생성할 때 사용
+
+    - **ALTER** : 테이블 등 데이터 객체를 변경할 때 사용
+
+    - **DROP** : 테이블 등 데이터 객체를 삭제할 때 사용
+
+    -  **RENAME** : 테이블 등 데이터 객체의 이름을 변경할 때 사용
+
+      
+
+  - **TCL** ( Transaction Control Language ) : 트랜잭션 제어 언어
+
+    - 트랜잭션 단위로 실행한 명령문을 적용하거나 취소한다.
+
+    - **COMMIT , ROLLBACK** 
+
+      : DML 문이 변경한 내용을 관리, 변경사항을 저장하거나 취소할 떄 사용한다. 
+
+      
+
+  - **DCL**( Data Control Languate ): 데이터 제어 언어
+
+    - Database, Table 접근 권한이나 CRUD 권한 정의
+    - 특정 사용자에게 테이블의 검색권한 부여 / 금지
+    - **GRANT** : 데이터 베이스 접근 권한 부여
+    - **REVOKE** : 데이터 베이스 접근 권한 삭제
+
+
+
+----------
+
+### DDL (Data Definition Language)
+
+---------
+
+
+
+#### 데이터베이스 생성하기
+
+- CREATE DATABASE 명령문은 새 데이터 베이스를 생성하는데 사용된다. 
+
+  - #### **`CREATE DATABASE <데이터베이스 이름>; `**
+
+  
+
+  
+
+- 데이터 베이스는 여러 테이블을 포함하고 있다.
+
+- 데이터 베이스 생성시 관리자 권한으로 생성해야 한다. 
+
+- 데이터 베이스 생성 후, 다음 명령어를 이용해서 데이터 베이스의 목록을 확인할 수 있다. 
+
+  - #### **`SHOW DATABASES; `**
+
+
+
+#### 데이터베이스 문자 집합 설정하기
+
+- 데이터 베이스 생성 시 설정 또는 생성 후 수정 가능
+- 문자집합은 각 문자가 컴퓨터에 저장될 때 어떠한 '코드'로 저장되는지 규칙을 지정한 집합이다.
+- Collation은 특정 문자 집합에 의해 데이터베이스에 저장된 값들을 비교, 검색, 정렬 등의 작업을 수행할 때 사용하는 비교 규칙 집합이다.
+
+
+
+#### 데이터 베이스 삭제
+
+- 데이터베이스의 모든 테이블을 삭제하고 데이터베이스를 삭제
+
+- 삭제시, DROP DATABASE 권한 필요
+
+- DROP SCHEMA 는 DROP DATABASE와 동의어
+
+- IF EXISTS 는 데이터베이스가 없을 시 발생할 수 있는 에러를 방지
+
+  ```sql
+  DROP {DATABASE|SCHEMA} [IF EXISTS] db_name
+  ```
+
+  
+
+#### 데이터 베이스 사용
+
+- 데이터 베이스가 있는 경우(접근 권한이 있는 경우), USE 명령어를 이용하여 사용한다.
+
+  ```sql
+  USE databasename;
+  ```
+
+  
+
+#### 테이블 생성하기
+
+```sql
+CREATE DATABASE table_name(
+	column1 datatype [options],
+	column2 datatybe [options],
+	column3 datatype,
+);
+```
+
+- 테이블 스키마 확인하기
+
+  ```sql
+  {DESCRIBE} table_name;
+  {DESC} table_name;
+  
+  // 둘 중 하나 쓰면 됨
+  ```
+
+
+
+
+
+---------
+
+###  **DML** (Data Manipulation Language) : 데이터 조작 언어
+
+------
+
+
+
+- 데이터베이스에서 데이터를 조작하거나 조회할 때 사용한다.
+- 테이블의 레코드를 CRUD (Create, Read, Update, Delete)
+
+
+
+- **SELECT** : 데이터 베이스에서 데이터를 조회할 때 사용
+
+  - 조회 시 컬럼의 이름이나 표현식을 조회할 수 있고 별칭 사용이 가능하다.
+
+  - #### **`*`** 는 모든 속성을 조회한다.
+
+  - WHERE 조건식을 이용하여 원하는 레코드를 조회할 수 있다.
+
+  ```sql
+  -- 모든 사원의 모든 정보 검색
+  SELECT *
+  FROM emp;
+  
+  -- 사원이 근무하는 부서번호 검색
+  SELECT deptno
+  FROM emp;
+  
+  -- (DISTINCT : 중복 제거 기능)
+  SELECT DISTINCT deptno
+  FROM emp;
+  
+  
+  -- 별명, 사칙연산
+  SELECT ename 이름, empno as '사번', comm 커미션, sal as 급여, 
+  		sal + comm as "커미션 포함 급여", sal + IFNULL(comm, 0) as "커미션 포함 급여2"
+  FROM emp;
+  
+  ```
+
+  - CASE Function
+
+    ```sql
+    CASE 
+    	WHEN condition1 THEN result1
+    	WHEN condition2 THEN result2
+    	WHEN condition3 THEN result3
+    	ELSE result4
+    END;
+    
+    -- 예시 : 모든 사원의 사번, 이름, 급여, 급여등급 조회
+    SELECT empno 사번, ename 이름, sal 급여,
+    	CASE WHEN sal >= 5000 THEN '고액연봉'
+    		WHEN sla >= 2000 THEN '평균연봉'
+    		ELSE "저액연봉"
+    	END "연봉등급"
+    FROM emp;
+    ```
+
+    
+
+  - WHERE
+
+    ```sql
+    -- 부서번호가 30인 사원 중 급여가 1500 이상인 사원의 이름, 급여, 부서번호 조회
+    SELECT ename, sal, deptno
+    FROM emp
+    WHERE depto = 30 AND sal >= 1500; 
+    
+    -- 부서번호가 20 또는 30인 부서에서 근무하는 사원의 사번, 이름, 부서번호 조회
+    SELECT empno, ename, deptno
+    FROM emp
+    WHERE deptno = 30 OR deptno = 20;
+    
+    -- job이 'MANAGER', 'ANALYST', 'PRESIDENT'인 사원의 이름, 사번, 업무조회
+    SELECT empno, ename, job
+    FROM emp
+    WHERE job in ('MANAGER', 'ANALYST', 'PRESIDENT');
+    
+    -- 부서 번호가 10, 20이 아닌 사원의 사번, 이름, 부서번호 조회
+    SELECT empno, ename, deptno
+    FROM emp
+    WHERE deptno not in (10, 20);
+    ```
+
+    
+
+  - BETWEEN
+
+    - 값이 주어진 범위의 범위 안에 있으면 조회, 숫자 뿐 아니라 문자나 날짜도 가능
+
+    ```sql
+    WHERE column_name BETWEEN value1 and value2;
+    ```
+
+    - 급여가 2000이상 3000이하인 사원의 사번, 이름, 급여 조회
+
+    ```sql
+    SELECT empno, ename, sal
+    FROM emp
+    WHERE sal BETWEEN 2000 AND 3000;
+    ```
+
+    
+
+  - NULL 비교 : IS NULL , IS NOT NULL
+
+    ```sql
+    -- 커미션이 NULL인 사원의 이름 조회
+    -- 1)
+    SELECT ename
+    FROM emp
+    WHERE comm = NULL ;
+    
+    -- 2)
+    SELECT ename
+    FROM emp
+    WHERE comm IS NULL ;
+    
+    
+    -- 커미션이 NULL이 아닌 사원의 이름 조회
+    -- 1)
+    SELECT ename
+    FROM emp
+    WHERE comm = NOT NULL ;
+    
+    -- 2)
+    SELECT ename
+    FROM emp
+    WHERE comm IS NOT NULL ;
+    
+    ```
+
+    
+
+  - LIKE
+
+    - WHERE 전렝서 칼럼의 값이 특정 패턴을 가지는지 검사하기 위해 사용
+    - 와일드 카드(%, _) 를 이용해 패턴을 표현한다.
+      - % : 0개 이상의 문자를 의미
+      - _ : 문자 하나를 의미
+
+    ```sql
+    -- 이름이 'M'으로 시작하는 사원의 사번, 이름 조회
+    SELECT empno, ename
+    FROM emp
+    WHERE ename LIKE 'M%';
+    ```
+
+    
+
+  - ORDER BY
+
+    - 조회 결과를 오름차순(ASC) 또는 내림차순(DESC)으로 정렬할 때 사용한다.
+
+    - 정렬 기준(칼럼)을 지정할 수 있다.
+
+      ```sql
+      SELECT column1, column2
+      FROM table_name
+      ORDER BY column1 ASC|DESC;
+      ```
+
+      ```sql
+      -- 모든 직원의 모든 정보를 이름을 기준으로 내림차순으로 정렬하여 조회
+      SELECT * 
+      FROM emp
+      ORDER BY ename DESC;
+      
+      -- 20, 30번 부서에 근무하는 사원의 사번, 이름, 부서번호, 급여를 조회하는데
+      -- 단, 부서별 오름차순 정렬 후, 급여순 내림차순으로 정렬
+      SELECT empno, ename, deptno, sal
+      FROM emp
+      WHERE deptno in (20, 30)
+      ORDER BY deptno, sal DESC;
+      ```
+
+      
+
+
+
+- **INSERT** : 테이블에 새 행을 입력할 때 사용
+
+  - 생성 시 작성한 모든 컬럼에 입력 값이 순서대로 주어지면 컬럼 이름 생략 가능
+  - (NULL, DEFAULT, AUTO INCREMENT 설정 필드 생략 가능)
+
+  ```sql
+  INSERT INTO table_name
+  VALUES (val1, val2,  );
+  
+  INSERT INTO table_name (col1, col3, col2)
+  VALUES (val1, val3, val2);
+  
+  INSERT INTO table_name (col1, col3, col2)
+  VALUES (val1, val3, val2), (vval1, vval3, vval2);
+  ```
+
+  
+
+- **UPDATE** : 기존 행을 변경할 때 사용
+
+  - 기존 레코드를 수정할 때, WHERE 절을 이용해 하나의 레코드 또는 다수의 레코드를 한 번에 수정할 수 있다. 
+
+    ```sql
+    UPDATE table_name
+    SET col_name = value, col_name2 = value2
+    [WHERE where_condition];
+    ```
+
+  - WHERE 절을 생략하면 테이블의 모든 행이 수정된다. 따라서 어떠한 레코드를 수정할 지 결정하는 정확한 조건문을 작성하는 연습이 필수적이다.
+
+    ```sql
+    UPDATE ssafy_member
+    SET username = 'anonymous';   -- 모든 레코드의 이름을 'anonymous'로 수정하기
+    
+    UPDATE ssafy_member 
+    SET emaildomain = 'ssafy.com'    -- emaildomain이 NULL인 레코드의 emaildomain을!
+    WHERE emaildomain is NULL;
+    ```
+
+    
+
+- **DELETE** : 테이블에서 행을 삭제할 때 사용
+
+  - WHERE 절을 이용해 하나의 레코드 또는 다수의 레코드를 한번에 삭제할 수 있다
+
+  ```sql
+  DELETE FROM tbl_name
+  [WHERE where_condition];
+  
+  DELETE FROM ssafy_member
+  WHERE idx = 2;
+  ```
+
+  
+
+
+
+------
+
+#### MySQL - Functions
+
+----------
+
+https://www.w3schools.com/mysql/default.asp
+
+:star: 집계함수(Aggregate Function)
+
+- 여러 값의 집합(복수 행) 에 대해서 동작한다.
+
+- GROUP BY 절과 함꼐 사용해 전체 집합의 하위 집합을 그룹화한다.
+
+  | 함수  |         설명          |
+  | :---: | :-------------------: |
+  |  AVG  | 인수의 평균 값을 반환 |
+  | COUNT | 조회된 행의 수를 반환 |
+  |  MAX  |      최대값 반환      |
+  |  MIN  |      최소값 반환      |
+  |  SUM  |        합 반환        |
+  |  STD  |     표준편차 반환     |
+
+   
+
+
+
+-----
+
+#### TCL : 트랜잭션 (Transaction)
+
+--------
+
+- 커밋 하거나 롤백 할 수 잇는 가장 작은 작업 단위
+- 커밋(Commit) : 트랜잭션을 종료하여 변경사항에 대해서 영구적으로 저장하는 SQL
+- 롤백(Rollback) : 트랜잭션에 의해 수행된 모든 변경사항을 실행 취소하는 SQL
+- 그러나 MySQL 에서는 기본적으로 세션이 시작하면 autocommit 설정 상태이므로, SQL 문장이 오류를 반환하지 않는 한 commit을 자동으로 수행한다. 따라서 (특히 DELETE) 매우 주의해야 함.
+
+```sql
+START TRANSACTION;
+INSERT INTO test_table VALUES ('S');
+INSERT INTO test_table VALUES ('S');
+INSERT INTO test_table VALUES ('A');
+INSERT INTO test_table VALUES ('F');
+INSERT INTO test_table VALUES ('Y');
+COMMIT;
+
+
+START TRANSACTION;
+INSERT INTO test_table VALUES ('S');
+INSERT INTO test_table VALUES ('S');
+INSERT INTO test_table VALUES ('A');
+INSERT INTO test_table VALUES ('F');
+INSERT INTO test_table VALUES ('Y');
+ROLLBACK;
+
+```
+
+
+
+
+
+-------
+
+#### JOIN 
+
+-------
+
+- 둘 이상의 테이블에서 데이터를 조회하기 위해서 사용
+
+- 일반적으로 조인 조건은 PK(Primary Key) 및 FK(Foreign Key)로 구성된다.
+
+- PK 및 FK 관계가 없더라도 논리적인 연관 만으로도 JOIN이 가능하다.
+
+- JOIN의 종류
+
+  - INNER JOIN 
+
+    - 조인 조건에 해당하는 칼럼 값이 양쪽 테이블에 모두 존재하는 경우에만 조회
+    - 동등조인(equi-join)이라고도 한다
+    - N개의 테이블 조인 시 N-1개의 조인 조건이 필요
+    - WHERE 절 만으로도 INNER JOIN 가능
+
+    ```sql
+    SELECT column_name(s)
+    FROM table1, table2
+    WHERE table1.column_name = table2.column_name;
+    
+    -- 예시
+    SELECT e.name, job, d.deptno, d.dname
+    FROM emp e, dept d
+    WHERE e.deptno = d.deptno
+    AND empno = 7788;
+    
+    SELECT e.name, job, d.deptno, d.dname
+    FROM emp e
+    JOIN dept d
+    ON e.deptno = d.deptno;
+    ```
+
+    
+
+  - OUTER JOIN
+
+    - 조인 조건에 해당하는 칼럼 값이 한 쪽 테이블에만 존재하더라도, 조회 기준 테이블에 따라 LEFT OUTER JOIN, RIGHT OUTER JOIN 으로 구분
+    - 한 테이블을 기준으로 다른 테이블에 영향을 주는 것
+
+    ```sql
+    -- 기준을 왼쪽 한 군데(여기서는 emp)에 두고 너 붙어라!
+    SELECT e.ename, e.deptno, d.dname
+    FROM emp e LEFT OUTER JOIN dept d
+    ON e.deptno = d.deptno;
+    ```
+
+    
+
